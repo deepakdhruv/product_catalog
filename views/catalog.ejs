@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Catalog</title>
+  <style>
+    .catalog { display: flex; flex-wrap: wrap; gap: 20px; }
+    .product { border: 1px solid #ccc; padding: 20px; width: 200px; }
+    img { width: 100%; height: 150px; object-fit: cover; }
+  </style>
+</head>
+<body>
+  <h1>Product Catalog</h1>
+  
+  <div class="catalog">
+    <% products.forEach(product => { %>
+      <div class="product">
+        <img src="<%= product.image %>" alt="<%= product.name %>">
+        <h3><%= product.name %></h3>
+        <p><%= product.description %></p>
+      </div>
+    <% }) %>
+  </div>
+
+  <h2>Upload New Product</h2>
+  <form action="/upload" method="POST" enctype="multipart/form-data">
+    <label for="name">Product Name:</label><br>
+    <input type="text" name="name" required><br><br>
+    <label for="description">Description:</label><br>
+    <textarea name="description" required></textarea><br><br>
+    <label for="productImage">Product Image:</label><br>
+    <input type="file" name="productImage" required><br><br>
+    <button type="submit">Upload</button>
+  </form>
+</body>
+</html>
